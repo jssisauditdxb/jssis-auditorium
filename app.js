@@ -72,8 +72,8 @@ function saveFormSubmissions() {
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: GMAIL_USER,
-    pass: GMAIL_PASS,
+    user: GMAIL_USER, 
+    pass: GMAIL_PASS, 
   },
 });
 
@@ -125,12 +125,29 @@ app.post('/submit', (req, res) => {
     saveFormSubmissions();
 
     const mailOptions = {
-      from: "jssisauditdxb@gmail.com",
+      from: GMAIL_USER, // ensures email is sent from your new Gmail
       to: formData.email,
       subject: 'Auditorium Booking Confirmation - JSS International School',
-      text: `Welcome, ${formData.name}. \nBelow are the details of the auditorium session you booked:\n\nEvent: ${formData.title}\nStart Time: ${formData.start_time}\nEnd Time: ${formData.end_time}\nDate: ${formData.date}\nClass: ${formData.class}\nSection: ${formData.section}\nDescription: ${formData.description}\nDuration: ${duration} minutes`,
+      text: `
+    Hello ${formData.name},
+    
+    Thank you for booking the auditorium at JSS International School. Here are your booking details:
+    
+    Event: ${formData.title}
+    Date: ${formData.date}
+    Start Time: ${formData.start_time}
+    End Time: ${formData.end_time}
+    Class: ${formData.class}
+    Section: ${formData.section}
+    Description: ${formData.description}
+    Duration: ${duration} minutes
+    
+    We look forward to seeing you!
+    
+    — JSS International School
+      `.trim(),
     };
-
+      
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error('Error sending email:', error.message);
