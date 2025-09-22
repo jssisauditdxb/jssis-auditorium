@@ -125,7 +125,7 @@ app.post('/submit', (req, res) => {
     saveFormSubmissions();
 
     const mailOptions = {
-      from: "jssisauditoriumdubai@gmail.com",
+      from: "jssisauditdxb@gmail.com",
       to: formData.email,
       subject: 'Auditorium Booking Confirmation - JSS International School',
       text: `Welcome, ${formData.name}. \nBelow are the details of the auditorium session you booked:\n\nEvent: ${formData.title}\nStart Time: ${formData.start_time}\nEnd Time: ${formData.end_time}\nDate: ${formData.date}\nClass: ${formData.class}\nSection: ${formData.section}\nDescription: ${formData.description}\nDuration: ${duration} minutes`,
