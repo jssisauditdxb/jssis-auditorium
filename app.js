@@ -72,8 +72,8 @@ function saveFormSubmissions() {
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: "jssisauditoriumdubai@gmail.com",
-    pass: "cjoc bvkw xeab ehot",
+    user: GMAIL_USER,
+    pass: GMAIL_PASS,
   },
 });
 
